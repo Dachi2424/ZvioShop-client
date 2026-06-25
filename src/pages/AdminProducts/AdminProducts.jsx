@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { adminListProducts, adminDeleteProduct, signOut } from "../../api/admin";
 import "./AdminProducts.scss";
+import NoImage from "../../assets/no-image.webp"
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -73,7 +74,13 @@ export default function AdminProducts() {
 
         {products.map((product) => (
           <article key={product.id} className="admin-products__card">
-            {product.image && <img src={product.image[0]} alt={product.name} />}
+            {product.image && <img src={product.image[0] || NoImage} alt={product.name}/>}
+            {product.warranty && product.warranty > 0 && (
+            <div className="admin-products__warranty">
+              <span>გარანტია</span>
+              <span>{product.warranty} წელი</span>
+            </div>
+            )}
             <div className="admin-products__body">
               <h3>{product.name}</h3>
               <p className="brand">{product.brand}</p>

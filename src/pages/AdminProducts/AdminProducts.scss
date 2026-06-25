@@ -99,6 +99,7 @@
   }
 
   &__card {
+    position: relative;
     background: $panel;
     border: 1px solid $border;
     border-radius: 10px;
@@ -120,6 +121,25 @@
     }
   }
 
+  &__warranty{
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    background-color: black;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 8px;
+    opacity: .8;
+
+    span{
+      color: white;
+      font-size: 12px;
+    }
+  }
+
+
   &__body {
     padding: 1.25rem;
     display: flex;
@@ -131,6 +151,15 @@
       font-weight: 700;
       margin: 0;
       color: $text;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      height: 36px;
+      overflow: hidden;
+
+      /* important fallback */
+      text-overflow: ellipsis;
     }
 
     .price {

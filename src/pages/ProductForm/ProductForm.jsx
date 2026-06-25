@@ -9,6 +9,7 @@ const empty = {
   price: "",
   amperage: "",
   voltage: "",
+  warranty: "",
   image: [],
 };
 
@@ -84,10 +85,16 @@ export default function ProductForm() {
           <label>ბრენდი<input value={form.brand} onChange={update("brand")} /></label>
           <label>ფასი (₾)<input type="number" step="0.01" value={form.price} onChange={update("price")} required /></label>
         </div>
+        
         <div className="row">
           <label>სიმძლავრე (Ah)<input type="number" value={form.amperage} onChange={update("amperage")} /></label>
           <label>ძაბვა (V)<input value={form.voltage} onChange={update("voltage")} /></label>
         </div>
+        <div className="row">
+          <label>გარანტია (წელი)<input type="number" value={form.warranty} onChange={update("warranty")} /></label>
+        </div>
+
+        
 
         <fieldset className="product-form__images">
           <legend>სურათების URL-ები</legend>
