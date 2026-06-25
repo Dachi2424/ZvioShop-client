@@ -64,7 +64,7 @@ export default function Products() {
         }
       });
 
-      const res = await axios.get("https://zvioshop-server-production.up.railway.app/products", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`, {
         params,
       });
       console.log(res.data)
