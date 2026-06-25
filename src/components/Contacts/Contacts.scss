@@ -1,0 +1,66 @@
+@use "../../styles/variables" as *;
+
+.contacts {
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: $panel;
+    border: 1px solid $border;
+    border-radius: 1rem;
+    padding: 2.5rem 1.5rem;
+    text-decoration: none;
+    color: $text;
+    transition: border-color 0.25s, transform 0.25s;
+
+    &:hover {
+      border-color: rgba($accent, 0.4);
+      transform: translateY(-4px);
+
+      .contacts__icon {
+        background: $accent;
+        color: $bg;
+      }
+    }
+  }
+
+  &__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba($accent, 0.12);
+    color: $accent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    transition: background-color 0.25s, color 0.25s;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem;
+  }
+
+  &__role {
+    color: rgba($text, 0.5);
+    font-size: 0.875rem;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  &__phone {
+    font-family: ui-monospace, monospace;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $accent;
+    margin: 0;
+  }
+}

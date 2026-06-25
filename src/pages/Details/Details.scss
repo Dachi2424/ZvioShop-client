@@ -1,0 +1,159 @@
+@use "../../styles/variables" as *; // or wherever $bg, $accent, etc. live
+
+.details {
+  padding: 2rem 0 5rem;
+
+  &__back {
+    display: inline-block;
+    color: rgba($text, 0.6);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    @include uppercase-label(11px, 0.15em);
+    &:hover { color: $accent; }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    @media (min-width: 900px) {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  // ── Gallery
+  &__main-image {
+    background: #fff;
+    border-radius: 12px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    img { max-width: 90%; max-height: 90%; object-fit: contain; }
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  &__thumb {
+    width: 72px; height: 72px;
+    border-radius: 8px;
+    background: #fff;
+    border: 2px solid transparent;
+    padding: 4px;
+    cursor: pointer;
+    transition: border-color .2s;
+    img { width: 100%; height: 100%; object-fit: contain; }
+    &.is-active { border-color: $accent; }
+  }
+
+  // ── Info column
+  &__info { display: flex; flex-direction: column; }
+
+  &__stock {
+    align-self: flex-start;
+    color: $accent;
+    border: 1px solid rgba($accent, .4);
+    border-radius: 999px;
+    padding: .35rem .9rem;
+    @include uppercase-label(10px, 0.2em);
+    margin-bottom: 1.25rem;
+  }
+
+  &__brand {
+    color: $accent;
+    @include uppercase-label(12px, 0.25em);
+    margin-bottom: .5rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+  }
+
+  &__price {
+    font-family: Oswald, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid $border;
+    margin-bottom: 1.5rem;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .75rem;
+    margin-bottom: 2rem;
+  }
+  &__stat {
+    background: $panel;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 1rem .75rem;
+    text-align: center;
+    display: flex; flex-direction: column; gap: .25rem;
+  }
+  &__stat-value {
+    font-family: Oswald, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $accent;
+    line-height: 1;
+  }
+  &__stat-label {
+    @include uppercase-label(10px, 0.18em);
+    color: rgba($text, .6);
+  }
+
+  &__cta {
+    display: flex; flex-wrap: wrap; gap: .75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  &__perks {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: .5rem;
+    li {
+      position: relative; padding-left: 1.5rem;
+      color: rgba($text, .8); font-size: .95rem;
+      &::before {
+        content: "✓"; position: absolute; left: 0; color: $accent; font-weight: 700;
+      }
+    }
+  }
+
+  // ── Specs
+  &__specs {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid $border;
+  }
+  &__specs-title {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 0 0 1.5rem;
+  }
+  &__spec-list {
+    display: grid; gap: 0; margin: 0;
+    > div {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      padding: 1rem 0;
+      border-bottom: 1px solid $border;
+      &:last-child { border-bottom: 0; }
+    }
+    dt {
+      @include uppercase-label(12px, 0.22em);
+      color: rgba($text, .55);
+    }
+    dd { margin: 0; color: $text; }
+  }
+}

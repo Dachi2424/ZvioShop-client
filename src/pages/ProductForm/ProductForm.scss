@@ -1,0 +1,160 @@
+@use "../../styles/variables" as *;
+@use "sass:color";
+
+.product-form {
+  background: $bg;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+
+  @media screen and (max-width: 540px) {
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    max-width: 42rem;
+    margin: 0 auto 2rem;
+    font-size: 1.75rem;
+    color: $text;
+  }
+
+  &__form {
+    max-width: 42rem;
+    margin: 0 auto;
+    background: $panel;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      &__double{
+        grid-template-columns: 1fr;
+      }
+
+      @media (max-width: 540px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      @include uppercase-label(0.78rem, 0.08em);
+      color: rgba($text, 0.6);
+    }
+
+    input,
+    textarea {
+      background: $bg;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: $text;
+      font-size: 0.95rem;
+      text-transform: none;
+      letter-spacing: normal;
+      font-family: inherit;
+      resize: vertical;
+      width: 100%;
+      &:focus {
+        outline: none;
+        border-color: $accent;
+      }
+
+      &::placeholder {
+        color: rgba($text, 0.35);
+      }
+    }
+  }
+
+  &__images {
+    border: 1px solid $border;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+
+    legend {
+      @include uppercase-label(0.78rem, 0.08em);
+      color: rgba($text, 0.6);
+      padding: 0 0.4rem;
+    }
+
+    .image-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+
+      input {
+        flex: 1;
+        background: $bg;
+        border: 1px solid $border;
+        border-radius: 6px;
+        padding: 0.65rem 0.9rem;
+        color: $text;
+        width: 100%;
+      }
+
+      .btn--danger {
+        flex-shrink: 0;
+        padding: 0.5rem 0.85rem;
+        line-height: 1;
+      }
+    }
+  }
+
+  &__error {
+    background: rgba($red, 0.12);
+    border: 1px solid rgba($red, 0.3);
+    color: color.adjust($red, $lightness: 15%);
+    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid $border;
+
+    @media (max-width: 540px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: $text;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.btn--danger {
+  background: transparent;
+  color: color.adjust($red, $lightness: 10%);
+  border: 1px solid rgba($red, 0.4);
+
+  &:hover {
+    background: rgba($red, 0.12);
+    border-color: $red;
+  }
+}

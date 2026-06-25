@@ -1,0 +1,14 @@
+$bg: #1A1D1F;
+$panel: #0E1011;
+$text: #EDEAE3;
+$accent: #F4C022;
+$accent-hover: #ffd23f;
+$blue: #3D5A73;
+$red: #D14B3D;
+$border: rgba(255, 255, 255, 0.1);
+
+@mixin uppercase-label($size: 10px, $spacing: 0.2em) {
+  font-size: $size;
+  text-transform: uppercase;
+  letter-spacing: $spacing;
+}

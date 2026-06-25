@@ -1,0 +1,43 @@
+
+@keyframes fadeIn {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes fadeOut {
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+
+.language-loader{
+  position: fixed;
+  background-color: #1A1D1F;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn .2s forwards;
+  &--closing{
+    animation: fadeOut .2s forwards;
+  }
+  &__loader {
+    width: 120px;
+    height: 20px;
+    background:
+    linear-gradient(#F4C022 0 0) 0/0% no-repeat
+    #ddd;
+    animation: l1 .5s .05s forwards linear;
+  }
+}
+
+@keyframes l1 {
+  100% {background-size:100%}
+}
+
+
+
+/* HTML: <div class="language-loader__loader"></div> */

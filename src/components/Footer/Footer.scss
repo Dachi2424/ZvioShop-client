@@ -1,0 +1,55 @@
+@use "../../styles/variables" as *;
+
+.footer {
+  border-top: 1px solid $border;
+  padding: 2.5rem 0;
+  position: relative;
+
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: rgba($text, 0.5);
+    text-align: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text;
+    font-size: 1rem;
+    cursor: pointer;
+    svg {
+      color: $accent;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &__copy {
+    margin: 0;
+  }
+
+  &__note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      color: $accent;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+    }
+  }
+}

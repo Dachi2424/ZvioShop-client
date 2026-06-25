@@ -1,0 +1,114 @@
+@use "../../styles/variables" as *;
+
+.hero {
+  padding: 4rem 0 5rem;
+  overflow: hidden;
+
+  &__inner {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $accent;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    border: 1px solid rgba($accent, 0.3);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+
+    &__dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: $accent;
+      animation: pulse 2s infinite;
+    }
+  }
+
+  &__title {
+    font-size: 3rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 3.75rem;
+    }
+  }
+
+  &__desc {
+    margin-top: 1.5rem;
+    font-size: 1.125rem;
+    color: rgba($text, 0.7);
+    max-width: 30rem;
+    line-height: 1.6;
+  }
+
+  &__actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 18rem;
+  }
+
+  &__glow {
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    background: radial-gradient(circle, rgba($accent, 0.18), transparent 70%);
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+
+  &__icon {
+    position: relative;
+    color: $accent;
+
+    &--main {
+      width: 12rem;
+      height: 12rem;
+      stroke-width: 1;
+    }
+
+    &--spark {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      color: $blue;
+      animation: float 3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}

@@ -1,0 +1,98 @@
+@use "../../styles/variables" as *;
+@use "sass:color";
+
+
+.admin-signin {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: $bg;
+
+  &__card {
+    width: 100%;
+    max-width: 380px;
+    background: $panel;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    h1 {
+      font-family: Oswald, sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 0;
+      color: $text;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      @include uppercase-label(0.78rem, 0.08em);
+      color: rgba($text, 0.6);
+    }
+
+    input {
+      background: $bg;
+      border: 1px solid $border;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      color: $text;
+      font-size: 0.95rem;
+      text-transform: none;
+      letter-spacing: normal;
+
+      &:focus {
+        outline: none;
+        border-color: $accent;
+      }
+
+      &::placeholder {
+        color: rgba($text, 0.35);
+      }
+    }
+
+    button[type="submit"] {
+      display: inline-block;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.875rem 1.75rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-size: 0.95rem;
+      width: 100%;
+      margin-top: 0.5rem;
+      background: $accent;
+      color: $bg;
+
+      &:hover:not(:disabled) {
+        background: $accent-hover;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__error {
+    background: rgba($red, 0.12);
+    border: 1px solid rgba($red, 0.3);
+    color: color.adjust($red, $lightness: 15%);
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    margin: 0;
+  }
+}
