@@ -62,11 +62,12 @@ export default function ProductForm() {
       ...form,
       price: Number(form.price),
       image: cleanImages,
+      warranty: form.warranty === "" ? null : Number(form.warranty)
     };
     try {
       if (isEdit) await adminUpdateProduct(id, payload);
       else await adminCreateProduct(payload);
-      navigate("/adminzviobattery/products");
+      navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -117,7 +118,7 @@ export default function ProductForm() {
         {error && <p className="product-form__error">{error}</p>}
 
         <div className="product-form__actions">
-          <button type="button" className="btn btn--ghost" onClick={() => navigate("/adminzviobattery/products")}>
+          <button type="button" className="btn btn--ghost" onClick={() => navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`)}>
             გაუქმება
           </button>
           <button type="submit" className="btn btn--primary" disabled={saving}>

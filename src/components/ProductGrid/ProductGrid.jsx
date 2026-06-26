@@ -8,8 +8,8 @@ const ProductCard = ({ product }) => {
     ? product.image[0]
     : null;
 
-    const navigate = useNavigate()
-
+  const navigate = useNavigate()
+  const { t } = useTranslation()
 
   function handleNavigateToDetails(id){
     navigate(`/product/${id}`)
@@ -24,9 +24,9 @@ const ProductCard = ({ product }) => {
           <img className="product-card__image" src={NoImage} alt="No battery image" />
         )}
 
-        {product.warranty != null && (
+        {product.warranty !== null && product.warranty !== 0 && (
           <span className="badge">
-            {product.warranty}y
+            {t("card_warranty")}: {product.warranty} {t("card_year")}
           </span>
         )}
       </div>

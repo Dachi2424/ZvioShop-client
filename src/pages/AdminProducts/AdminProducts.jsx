@@ -50,7 +50,7 @@ export default function AdminProducts() {
     try {
       await signOut();
     } finally {
-      navigate("/adminzviobattery");
+      navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}`);
     }
   }
 
@@ -74,8 +74,8 @@ export default function AdminProducts() {
 
         {products.map((product) => (
           <article key={product.id} className="admin-products__card">
-            {product.image && <img src={product.image[0] || NoImage} alt={product.name}/>}
-            {product.warranty && product.warranty > 0 && (
+            <img src={product.image?.[0] || NoImage} alt={product.name}/>
+            {product.warranty > 0 && (
             <div className="admin-products__warranty">
               <span>გარანტია</span>
               <span>{product.warranty} წელი</span>
@@ -90,7 +90,7 @@ export default function AdminProducts() {
               </div>
               <p className="price">{product.price} ₾</p>
               <div className="admin-products__card-actions">
-                <Link to={`/adminzviobattery/products/${product.id}/edit`} className="btn btn--ghost">
+                <Link to={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/${product.id}/edit`} className="btn btn--ghost">
                   რედაქტირება
                 </Link>
                 <button onClick={() => handleDelete(product.id)} className="btn btn--danger">

@@ -81,5 +81,8 @@
   "notFound_dead-on-arrival" : "Dead on arrival",
   "notFound_no-charge" : "This page has no charge left. Head back and find what you need.",
   "notFound_go-home" : "Go Home",
-  "notFound_browse" : "Browse Batteries"
+  "notFound_browse" : "Browse Batteries",
+
+  "card_warranty" : "warranty",
+  "card_year" : "y"
 }

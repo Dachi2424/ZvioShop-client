@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import {useTranslation} from "react-i18next"
+import NoImage from "../../assets/no-image.webp"
 import "./Details.scss";
 
 export default function Details() {
@@ -13,11 +14,13 @@ export default function Details() {
   const { t } = useTranslation()
 
   useEffect(() => {
+
     async function getDetails(){
       try{
         const res = await axios.get(`https://zvioshop-server-production.up.railway.app/products/${id}`)
         setProduct(res.data);
         setActiveImg(0)
+        console.log(res.data)
       } catch(err){
         console.log(err)
       } finally{
@@ -32,7 +35,7 @@ export default function Details() {
   // if (loading) return <div className="app__loader-container"><div className="app__loader" /></div>;
   if (!product) return <div className="container details"><p>{t("detail_no-product")}.</p></div>;
 
-  const images = Array.isArray(product.image) && product.image.length ? product.image : ["/placeholder.png"];
+  const images = Array.isArray(product.image) && product.image.length ? product.image : [NoImage];
 
   return (
     <div className="details">

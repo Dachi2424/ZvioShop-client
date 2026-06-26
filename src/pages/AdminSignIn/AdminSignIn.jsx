@@ -13,7 +13,7 @@ export default function AdminSignIn() {
 
   useEffect(() => {
     verify()
-    .then(res => res.admin ? navigate("/adminzviobattery/products") : null)
+    .then(res => res.admin ? navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`) : null)
     .catch(() => console.log("not logged in"))
   }, [])
 
@@ -24,7 +24,7 @@ export default function AdminSignIn() {
     setButtonLoading(true);
     try {
       await signIn(password); // backend sets the httpOnly cookie itself
-      navigate("/adminzviobattery/products");
+      navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`);
     } catch (err) {
       setError(err.message);
     } finally {

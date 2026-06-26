@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    img { max-width: 90%; max-height: 90%; object-fit: contain; }
+    img { max-width: 90%; max-height: 90%; object-fit: contain}
   }
 
   &__thumbs {
@@ -52,7 +52,7 @@
   }
 
   // ── Info column
-  &__info { display: flex; flex-direction: column; }
+  &__info { display: flex; flex-direction: column}
 
   &__stock {
     align-self: flex-start;
@@ -74,6 +74,8 @@
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.05;
     margin: 0 0 1.5rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   &__price {

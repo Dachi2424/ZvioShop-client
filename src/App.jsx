@@ -33,10 +33,10 @@ export default function App() {
             <Route path="/products" element={<Products/>} />
             <Route path="/product/:id" element={<Details />}/>
 
-            <Route path="/adminzviobattery" element={<AdminSignIn />} />
-            <Route path="/adminzviobattery/products" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
-            <Route path="/adminzviobattery/products/new" element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />
-            <Route path="/adminzviobattery/products/:id/edit" element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />
+            <Route path={`/${import.meta.env.VITE_ADMIN_ROUTE}`} element={<AdminSignIn />} />
+            <Route path={`/${import.meta.env.VITE_ADMIN_ROUTE}/products`} element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
+            <Route path={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/new`} element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />
+            <Route path={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/:id/edit`} element={<ProtectedRoute><ProductForm /></ProtectedRoute>} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
