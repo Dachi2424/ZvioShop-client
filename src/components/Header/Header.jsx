@@ -3,7 +3,7 @@ import { Zap, Menu, X } from "lucide-react";
 import "./Header.scss";
 import { useTranslation } from "react-i18next";
 import {NavLink} from "react-router-dom"
-
+import AnimatedLink from "../AnimatedLink";
 
 
 export default function Header({setLanguageLoader}) {
@@ -34,10 +34,10 @@ export default function Header({setLanguageLoader}) {
   return (
     <header className="nav">
       <div className="container nav__inner">
-        <NavLink to="/" className="nav__logo">
+        <AnimatedLink to="/" className="nav__logo">
           <Zap strokeWidth={2.5} />
           <span className="display">Zvio<span className="accent">Shop</span></span>
-        </NavLink>
+        </AnimatedLink>
 
         <nav className="nav__links">
           {links.map((l) => (
@@ -51,7 +51,7 @@ export default function Header({setLanguageLoader}) {
           <button className="nav__lang" onClick={toggleLang}>
             {i18n.language === "en" ? "ENG" : "GEO"}
           </button>
-          <NavLink to="/products" className="btn btn--primary nav__cta">{t("header_shop-now")}</NavLink>
+          <AnimatedLink to="/products" className="btn btn--primary nav__cta">{t("header_shop-now")}</AnimatedLink>
           <button
             className="nav__burger"
             aria-label={open ? "Close menu" : "Open menu"}

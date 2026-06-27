@@ -3,13 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import {useTranslation} from "react-i18next"
 import NoImage from "../../assets/no-image.webp"
+import AnimatedLink from "../../components/AnimatedLink";
 import "./Details.scss";
 
 export default function Details() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const { t } = useTranslation()
 
@@ -24,7 +25,7 @@ export default function Details() {
       } catch(err){
         console.log(err)
       } finally{
-        // setLoading(false)
+        setLoading(false)
       }
     }
 
@@ -32,15 +33,15 @@ export default function Details() {
   }, [id]);
 
 
-  // if (loading) return <div className="app__loader-container"><div className="app__loader" /></div>;
+  if (loading) return <div className="app__loader-container"><div className="app__loader" /></div>;
   if (!product) return <div className="container details"><p>{t("detail_no-product")}.</p></div>;
 
   const images = Array.isArray(product.image) && product.image.length ? product.image : [NoImage];
 
   return (
-    <div className="details">
+    <div className="details page">
       <div className="container">
-        <Link to="/products" className="details__back">← {t("detail_back-to-catalog")}</Link>
+        <AnimatedLink to="/products" className="details__back">← {t("detail_back-to-catalog")}</AnimatedLink>
 
         <div className="details__grid">
           {/* Gallery */}

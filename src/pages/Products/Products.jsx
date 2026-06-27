@@ -77,7 +77,7 @@ export default function Products() {
   }
 
   return (
-    <section className="products-page">
+    <section className="products-page page">
       <header className="products-page__header">
         <span className="products-page__eyebrow">
           ● {t("hero_instock")}

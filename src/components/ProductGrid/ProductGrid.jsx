@@ -4,6 +4,11 @@ import {useTranslation} from "react-i18next"
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  
+  function animatedLink(){
+    
+  }
+  
   const img = Array.isArray(product.image) && product.image.length > 0
     ? product.image[0]
     : null;
@@ -12,8 +17,10 @@ const ProductCard = ({ product }) => {
   const { t } = useTranslation()
 
   function handleNavigateToDetails(id){
-    navigate(`/product/${id}`)
+    document.querySelector(".page").classList.add("page--closing")
+    setTimeout(() => navigate(`/product/${id}`), 500)
   }
+
 
   return (
     <article className="product-card">

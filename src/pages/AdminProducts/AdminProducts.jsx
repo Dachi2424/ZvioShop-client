@@ -55,7 +55,7 @@ export default function AdminProducts() {
   }
 
   return (
-    <div className="admin-products">
+    <div className="admin-products page">
       <header className="admin-products__header">
         <h1>პროდუქტები</h1>
         <div className="admin-products__actions">

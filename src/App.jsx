@@ -8,9 +8,10 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import "./App.scss";
 
 import { lazy, Suspense, useState } from "react";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminSignIn from "./pages/AdminSignIn/AdminSignIn"
-import AdminProducts from "./pages/AdminProducts/AdminProducts"
+const AdminProducts = lazy(() => import("./pages/AdminProducts/AdminProducts"))
 import ProductForm from "./pages/ProductForm/ProductForm"
 import NotFound from "./pages/NotFound/NotFound";
 
