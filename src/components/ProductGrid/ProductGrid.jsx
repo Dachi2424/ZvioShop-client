@@ -5,10 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   
-  function animatedLink(){
-    
-  }
-  
   const img = Array.isArray(product.image) && product.image.length > 0
     ? product.image[0]
     : null;

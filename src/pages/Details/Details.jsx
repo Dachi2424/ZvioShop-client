@@ -34,7 +34,11 @@ export default function Details() {
 
 
   if (loading) return <div className="app__loader-container"><div className="app__loader" /></div>;
-  if (!product) return <div className="container details"><p>{t("detail_no-product")}.</p></div>;
+  if (!product) return (
+    <div className="details__no-product-container page">
+      <p>{t("detail_no-product")}.</p>
+      <AnimatedLink to="/products" className="details__back details__back--no-product">← {t("detail_back-to-catalog")}</AnimatedLink>
+    </div>)
 
   const images = Array.isArray(product.image) && product.image.length ? product.image : [NoImage];
 

@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Zap, Menu, X } from "lucide-react";
 import "./Header.scss";
 import { useTranslation } from "react-i18next";
-import {NavLink} from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom";
 import AnimatedLink from "../AnimatedLink";
 
 
 export default function Header({setLanguageLoader}) {
   const [open, setOpen] = useState(false);
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const links = [
     { label: `${t("header_brands")}`, href: "#brands" },
@@ -18,17 +20,26 @@ export default function Header({setLanguageLoader}) {
 
   const handleLinkClick = (href) => {
     setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 250);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const toggleLang = () => {
     setLanguageLoader(true)
     setTimeout(() => {
       const newLang = i18n.language === "en" ? "ka" : "en";
+      setOpen(false)
       i18n.changeLanguage(newLang);
       localStorage.setItem("lang", newLang);
-    }, 500)
+    }, 250)
   };
 
   return (
