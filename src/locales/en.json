@@ -1,4 +1,15 @@
 {
+  "titles": {
+    "home": "ZvioShop",
+    "products": "Car batteries",
+    "details": "Battery details",
+    "adminSignIn": "Admin login",
+    "adminProducts": "Manage products",
+    "addProduct": "Add a product",
+    "editProduct": "Edit a product",
+    "notFound": "Error 404"
+  },
+
   "header_brands" : "BRANDS",
   "header_contacts" : "CONTACTS",
   "header_FAQ" : "FAQ",

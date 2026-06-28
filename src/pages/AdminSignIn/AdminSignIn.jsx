@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { signIn, verify } from "../../api/admin";
 import "./AdminSignIn.scss";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet-async"
 
 export default function AdminSignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [buttonLoading, setButtonLoading] = useState(false);
   const navigate = useNavigate();
-
+  const { t } = useTranslation()
 
   useEffect(() => {
     verify()
@@ -34,24 +36,29 @@ export default function AdminSignIn() {
 
 
   return (
-    <div className="admin-signin">
-      <form className="admin-signin__card" onSubmit={handleSubmit}>
-        <h1>ადმინ პანელი</h1>
-        <label>
-          პაროლი
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoFocus
-          />
-        </label>
-        {error && <p className="admin-signin__error">{error}</p>}
-        <button type="submit" disabled={buttonLoading}>
-          {buttonLoading ? "მიმდინარეობს..." : "შესვლა"}
-        </button>
-      </form>
-    </div>
+    <>  
+      <Helmet>
+        <title>{t("titles.adminSignIn")}</title>
+      </Helmet>
+      <div className="admin-signin">
+        <form className="admin-signin__card" onSubmit={handleSubmit}>
+          <h1>ადმინ პანელი</h1>
+          <label>
+            პაროლი
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoFocus
+            />
+          </label>
+          {error && <p className="admin-signin__error">{error}</p>}
+          <button type="submit" disabled={buttonLoading}>
+            {buttonLoading ? "მიმდინარეობს..." : "შესვლა"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }

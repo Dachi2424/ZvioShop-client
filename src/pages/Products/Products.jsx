@@ -5,6 +5,7 @@ import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import {useTranslation} from "react-i18next"
 import "./Products.scss";
 import { useLocation } from "react-router-dom";
+import {Helmet} from "react-helmet-async"
 
 const DEFAULT_FILTERS = {
   search: "",
@@ -84,86 +85,91 @@ export default function Products() {
   }
 
   return (
-    <section className="products-page page">
-      <header className="products-page__header">
-        <span className="app__badge">
-          <span className="app__badge__dot"></span>
-          {t("hero_instock")}
-        </span>
+    <>
+      <Helmet>
+        <title>{t("titles.products")}</title>
+      </Helmet>
+      <section className="products-page page">
+        <header className="products-page__header">
+          <span className="app__badge">
+            <span className="app__badge__dot"></span>
+            {t("hero_instock")}
+          </span>
 
-        <h1 className="products-page__title">
-          {t("products_title-part1")} <span className="accent">{t("products_title-part2")}</span>
-        </h1>
+          <h1 className="products-page__title">
+            {t("products_title-part1")} <span className="accent">{t("products_title-part2")}</span>
+          </h1>
 
-        <p className="products-page__subtitle">
-          {t("products_subtitle")}
-        </p>
-      </header>
+          <p className="products-page__subtitle">
+            {t("products_subtitle")}
+          </p>
+        </header>
 
-      {/* 🔥 THIS IS THE IMPORTANT PART */}
-      <div className="products-page__layout">
+        {/* 🔥 THIS IS THE IMPORTANT PART */}
+        <div className="products-page__layout">
 
-        {/* LEFT SIDEBAR */}
-        <aside className="products-page__sidebar">
-          <ProductFilter
-            filters={filters}
-            onChange={(newFilters) => {
-              setFilters(newFilters);
-              setPage(1);
-            }}
-            onReset={() => {
-              setFilters(DEFAULT_FILTERS);
-              setPage(1);
-            }}
-          />
-        </aside>
+          {/* LEFT SIDEBAR */}
+          <aside className="products-page__sidebar">
+            <ProductFilter
+              filters={filters}
+              onChange={(newFilters) => {
+                setFilters(newFilters);
+                setPage(1);
+              }}
+              onReset={() => {
+                setFilters(DEFAULT_FILTERS);
+                setPage(1);
+              }}
+            />
+          </aside>
 
-        {/* RIGHT CONTENT */}
-        <main className="products-page__main">
+          {/* RIGHT CONTENT */}
+          <main className="products-page__main">
 
-          <div className="products-page__meta">
-            {loading ? `${t("products_loading")}...` : `${data.total} ${data.total === 1 ? t("products_product") : t("products_products")}`}
-          </div>
-
-          {error && (
-            <div className="products-page__error">{error}</div>
-          )}
-
-          <ProductGrid
-            products={data.products}
-            loading={loading}
-          />
-
-          {data.totalPages > 1 && (
-            <div className="products-page__pagination">
-
-              <button
-                className="pg-btn"
-                disabled={page === 1}
-                onClick={() => {
-                  window.scrollTo(0, 0)
-                  setPage((p) => p - 1)
-                }}
-              >
-                ← {t("products_prev")}
-              </button>
-
-              <span className="pg-info">
-                {t("products_page")} {data.page} / {data.totalPages}
-              </span>
-
-              <button
-                className="pg-btn"
-                disabled={page === data.totalPages}
-                onClick={() => setPage((p) => p + 1)}
-              >
-                {t("products_next")} →
-              </button>
+            <div className="products-page__meta">
+              {loading ? `${t("products_loading")}...` : `${data.total} ${data.total === 1 ? t("products_product") : t("products_products")}`}
             </div>
-          )}
 
-        </main>
-      </div>
-    </section>
+            {error && (
+              <div className="products-page__error">{error}</div>
+            )}
+
+            <ProductGrid
+              products={data.products}
+              loading={loading}
+            />
+
+            {data.totalPages > 1 && (
+              <div className="products-page__pagination">
+
+                <button
+                  className="pg-btn"
+                  disabled={page === 1}
+                  onClick={() => {
+                    window.scrollTo(0, 0)
+                    setPage((p) => p - 1)
+                  }}
+                >
+                  ← {t("products_prev")}
+                </button>
+
+                <span className="pg-info">
+                  {t("products_page")} {data.page} / {data.totalPages}
+                </span>
+
+                <button
+                  className="pg-btn"
+                  disabled={page === data.totalPages}
+                  onClick={() => setPage((p) => p + 1)}
+                >
+                  {t("products_next")} →
+                </button>
+              </div>
+            )}
+
+          </main>
+        </div>
+      </section>
+    </>
   );
 }

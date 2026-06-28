@@ -4,6 +4,7 @@ import axios from "axios";
 import {useTranslation} from "react-i18next"
 import NoImage from "../../assets/no-image.webp"
 import AnimatedLink from "../../components/AnimatedLink";
+import { Helmet } from "react-helmet-async"
 import "./Details.scss";
 
 export default function Details() {
@@ -42,82 +43,87 @@ export default function Details() {
   const images = Array.isArray(product.image) && product.image.length ? product.image : [NoImage];
 
   return (
-    <div className="details page">
-      <div className="container">
-        <AnimatedLink to="/products" className="details__back">← {t("detail_back-to-catalog")}</AnimatedLink>
+    <>
+      <Helmet>
+        <title>{t("titles.details")}</title>
+      </Helmet>
+      <div className="details page">
+        <div className="container">
+          <AnimatedLink to="/products" className="details__back">← {t("detail_back-to-catalog")}</AnimatedLink>
 
-        <div className="details__grid">
-          {/* Gallery */}
-          <div className="details__gallery">
-            <div className="details__main-image">
-              <img src={images[activeImg]} alt={product.name} />
-            </div>
-            {images.length > 1 && (
-              <div className="details__thumbs">
-                {images.map((src, i) => (
-                  <button
-                    key={i}
-                    className={`details__thumb ${i === activeImg ? "is-active" : ""}`}
-                    onClick={() => setActiveImg(i)}
-                  >
-                    <img src={src} alt={`${product.name} ${i + 1}`} />
-                  </button>
-                ))}
+          <div className="details__grid">
+            {/* Gallery */}
+            <div className="details__gallery">
+              <div className="details__main-image">
+                <img src={images[activeImg]} alt={product.name} />
               </div>
-            )}
+              {images.length > 1 && (
+                <div className="details__thumbs">
+                  {images.map((src, i) => (
+                    <button
+                      key={i}
+                      className={`details__thumb ${i === activeImg ? "is-active" : ""}`}
+                      onClick={() => setActiveImg(i)}
+                    >
+                      <img src={src} alt={`${product.name} ${i + 1}`} />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="details__info">
+              <span className="app__badge app__badge--self-centered">
+                <span className="app__badge__dot"></span>
+                {t("hero_instock")}
+              </span>
+              <div className="details__brand">{product.brand}</div>
+              <h1 className="display details__title">{product.name}</h1>
+
+              <div className="details__price">₾{Number(product.price).toFixed(2)}</div>
+
+              <div className="details__stats">
+                <div className="details__stat">
+                  <span className="details__stat-value">{product.amperage}</span>
+                  <span className="details__stat-label">Ah</span>
+                </div>
+                <div className="details__stat">
+                  <span className="details__stat-value">{Number(product.voltage)}</span>
+                  <span className="details__stat-label">Volt</span>
+                </div>
+                <div className="details__stat">
+                  <span className="details__stat-value">{product.warranty ?? "—"}</span>
+                  <span className="details__stat-label">{t("detail_warranty")}</span>
+                </div>
+              </div>
+
+              <div className="details__cta">
+                <a href="tel:+995555777518" className="btn btn--primary">{t("detail_call-the-shop")}</a>
+                <Link to="/products" className="btn btn--outline">{t("detail_browse-more")}</Link>
+              </div>
+
+              <ul className="details__perks">
+                <li>{t("detail_free-instalation")}</li>
+                <li>{t("detail_buy-back")}</li>
+                <li>{t("detail_tested")}</li>
+              </ul>
+            </div>
           </div>
 
-          {/* Info */}
-          <div className="details__info">
-            <span className="app__badge app__badge--self-centered">
-              <span className="app__badge__dot"></span>
-              {t("hero_instock")}
-            </span>
-            <div className="details__brand">{product.brand}</div>
-            <h1 className="display details__title">{product.name}</h1>
-
-            <div className="details__price">₾{Number(product.price).toFixed(2)}</div>
-
-            <div className="details__stats">
-              <div className="details__stat">
-                <span className="details__stat-value">{product.amperage}</span>
-                <span className="details__stat-label">Ah</span>
-              </div>
-              <div className="details__stat">
-                <span className="details__stat-value">{Number(product.voltage)}</span>
-                <span className="details__stat-label">Volt</span>
-              </div>
-              <div className="details__stat">
-                <span className="details__stat-value">{product.warranty ?? "—"}</span>
-                <span className="details__stat-label">{t("detail_warranty")}</span>
-              </div>
-            </div>
-
-            <div className="details__cta">
-              <a href="tel:+995555777518" className="btn btn--primary">{t("detail_call-the-shop")}</a>
-              <Link to="/products" className="btn btn--outline">{t("detail_browse-more")}</Link>
-            </div>
-
-            <ul className="details__perks">
-              <li>{t("detail_free-instalation")}</li>
-              <li>{t("detail_buy-back")}</li>
-              <li>{t("detail_tested")}</li>
-            </ul>
-          </div>
+          {/* Spec table */}
+          <section className="details__specs">
+            <h2 className="details__specs-title">{t("detail_specifications")}</h2>
+            <dl className="details__spec-list">
+              <div><dt>{t("detail_brand")}</dt><dd>{product.brand}</dd></div>
+              <div><dt>{t("detail_amperage")}</dt><dd>{product.amperage} Ah</dd></div>
+              <div><dt>{t("detail_voltage")}</dt><dd>{Number(product.voltage)} V</dd></div>
+              <div><dt>{t("detail_warranty2")}</dt><dd>{product.warranty ? `${product.warranty} ${t("detail_years")}` : "—"}</dd></div>
+              <div><dt>SKU</dt><dd>#{String(product.id).padStart(5, "0")}</dd></div>
+            </dl>
+          </section>
         </div>
-
-        {/* Spec table */}
-        <section className="details__specs">
-          <h2 className="details__specs-title">{t("detail_specifications")}</h2>
-          <dl className="details__spec-list">
-            <div><dt>{t("detail_brand")}</dt><dd>{product.brand}</dd></div>
-            <div><dt>{t("detail_amperage")}</dt><dd>{product.amperage} Ah</dd></div>
-            <div><dt>{t("detail_voltage")}</dt><dd>{Number(product.voltage)} V</dd></div>
-            <div><dt>{t("detail_warranty2")}</dt><dd>{product.warranty ? `${product.warranty} ${t("detail_years")}` : "—"}</dd></div>
-            <div><dt>SKU</dt><dd>#{String(product.id).padStart(5, "0")}</dd></div>
-          </dl>
-        </section>
       </div>
-    </div>
+    </>
   );
 }

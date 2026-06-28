@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { adminCreateProduct, adminUpdateProduct, adminListProducts } from "../../api/admin";
 import "./ProductForm.scss";
+import { useTranslation } from "react-i18next"
+import { Helmet } from "react-helmet-async"
 
 const empty = {
   name: "",
@@ -15,6 +17,7 @@ const empty = {
 
 export default function ProductForm() {
   const { id } = useParams();
+  const { t } = useTranslation()
   const isEdit = Boolean(id);
   const navigate = useNavigate();
 
@@ -76,56 +79,61 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="product-form">
-      <h1>{isEdit ? "პროდუქტის რედაქტირება" : "ახალი პროდუქტი"}</h1>
-      <form onSubmit={handleSubmit} className="product-form__form">
-        <div className="row row__double">
-          <label>დასახელება<input value={form.name} onChange={update("name")} required /></label>
-        </div>
-        <div className="row">
-          <label>ბრენდი<input value={form.brand} onChange={update("brand")} /></label>
-          <label>ფასი (₾)<input type="number" step="0.01" value={form.price} onChange={update("price")} required /></label>
-        </div>
-        
-        <div className="row">
-          <label>სიმძლავრე (Ah)<input type="number" value={form.amperage} onChange={update("amperage")} /></label>
-          <label>ძაბვა (V)<input value={form.voltage} onChange={update("voltage")} /></label>
-        </div>
-        <div className="row">
-          <label>გარანტია (წელი)<input type="number" value={form.warranty} onChange={update("warranty")} /></label>
-        </div>
+    <>
+      <Helmet>
+        <title>{isEdit ? t("titles.editProduct") : t("titles.addProduct")}</title>
+      </Helmet>
+      <div className="product-form">
+        <h1>{isEdit ? "პროდუქტის რედაქტირება" : "ახალი პროდუქტი"}</h1>
+        <form onSubmit={handleSubmit} className="product-form__form">
+          <div className="row row__double">
+            <label>დასახელება<input value={form.name} onChange={update("name")} required /></label>
+          </div>
+          <div className="row">
+            <label>ბრენდი<input value={form.brand} onChange={update("brand")} /></label>
+            <label>ფასი (₾)<input type="number" step="0.01" value={form.price} onChange={update("price")} required /></label>
+          </div>
+          
+          <div className="row">
+            <label>სიმძლავრე (Ah)<input type="number" value={form.amperage} onChange={update("amperage")} /></label>
+            <label>ძაბვა (V)<input value={form.voltage} onChange={update("voltage")} /></label>
+          </div>
+          <div className="row">
+            <label>გარანტია (წელი)<input type="number" value={form.warranty} onChange={update("warranty")} /></label>
+          </div>
 
-        
+          
 
-        <fieldset className="product-form__images">
-          <legend>სურათების URL-ები</legend>
-          {images.map((url, i) => (
-            <div key={i} className="image-row">
-              <input
-                type="url"
-                placeholder="https://..."
-                value={url}
-                onChange={(e) => updateImage(i, e.target.value)}
-              />
-              {images.length > 1 && (
-                <button type="button" onClick={() => removeImage(i)} className="btn btn--danger">×</button>
-              )}
-            </div>
-          ))}
-          <button type="button" onClick={addImage} className="btn btn--ghost">+ სურათის დამატება</button>
-        </fieldset>
+          <fieldset className="product-form__images">
+            <legend>სურათების URL-ები</legend>
+            {images.map((url, i) => (
+              <div key={i} className="image-row">
+                <input
+                  type="url"
+                  placeholder="https://..."
+                  value={url}
+                  onChange={(e) => updateImage(i, e.target.value)}
+                />
+                {images.length > 1 && (
+                  <button type="button" onClick={() => removeImage(i)} className="btn btn--danger">×</button>
+                )}
+              </div>
+            ))}
+            <button type="button" onClick={addImage} className="btn btn--ghost">+ სურათის დამატება</button>
+          </fieldset>
 
-        {error && <p className="product-form__error">{error}</p>}
+          {error && <p className="product-form__error">{error}</p>}
 
-        <div className="product-form__actions">
-          <button type="button" className="btn btn--ghost" onClick={() => navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`)}>
-            გაუქმება
-          </button>
-          <button type="submit" className="btn btn--primary" disabled={saving}>
-            {saving ? "ინახება..." : "შენახვა"}
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="product-form__actions">
+            <button type="button" className="btn btn--ghost" onClick={() => navigate(`/${import.meta.env.VITE_ADMIN_ROUTE}/products`)}>
+              გაუქმება
+            </button>
+            <button type="submit" className="btn btn--primary" disabled={saving}>
+              {saving ? "ინახება..." : "შენახვა"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

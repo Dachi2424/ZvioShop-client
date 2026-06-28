@@ -1,4 +1,15 @@
 {
+  "titles": {
+    "home": "ZvioShop",
+    "products": "ავტომობილის აკუმულატორები",
+    "details": "აკუმულატორის დეტალები",
+    "adminSignIn": "ადმინის შესვლა",
+    "adminProducts": "პროდუქტების მართვა",
+    "addProduct": "პროდუქტის დამატება",
+    "editProduct": "პროდუქტის რედაქტირება",
+    "notFound": "შეცდომა 404"
+  },
+
   "header_brands" : "ბრენდები",
   "header_contacts" : "კონტაქტები",
   "header_FAQ" : "FAQ",
