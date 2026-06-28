@@ -18,7 +18,6 @@ const ProductFilter = ({ filters, onChange, onReset }) => {
   const apply = (e) => {
     e.preventDefault();
     onChange(local);
-    console.log(local)
   };
 
   return (

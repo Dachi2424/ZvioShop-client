@@ -67,7 +67,6 @@ export default function Products() {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`, {
         params,
       });
-      console.log(res.data)
       setData(res.data);
     } catch (err) {
       setError(err.response?.data?.error || err.message);

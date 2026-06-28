@@ -184,8 +184,8 @@ html, body {
 }
 
 .page{
-  animation: app-fadeIn .5s forwards;
+  animation: app-fadeIn .3s forwards;
   &--closing{
-    animation: app-fadeOut .5s forwards;
+    animation: app-fadeOut .3s forwards;
   }
 }

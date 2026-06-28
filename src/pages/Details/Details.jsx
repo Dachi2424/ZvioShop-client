@@ -21,7 +21,6 @@ export default function Details() {
         const res = await axios.get(`https://zvioshop-server-production.up.railway.app/products/${id}`)
         setProduct(res.data);
         setActiveImg(0)
-        console.log(res.data)
       } catch(err){
         console.log(err)
       } finally{
