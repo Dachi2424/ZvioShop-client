@@ -59,7 +59,7 @@ export default function AdminProducts() {
       <header className="admin-products__header">
         <h1>პროდუქტები</h1>
         <div className="admin-products__actions">
-          <Link to="/adminzviobattery/products/new" className="btn btn--primary">
+          <Link to={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/new`} className="btn btn--primary">
             + ახალი პროდუქტი
           </Link>
           <button onClick={handleLogout} className="btn btn--ghost">გასვლა</button>
