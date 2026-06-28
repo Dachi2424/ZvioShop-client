@@ -2,32 +2,34 @@ import { useState } from "react";
 import "./FAQ.scss";
 import { useTranslation } from "react-i18next";
 
-const faqs = [
-  {
-    q: "How do I know which battery fits my car?",
-    a: "Check your current battery's label for group size, CCA rating, and terminal layout. Match those numbers to the spec strip on any listing — if you're unsure, call the shop and we'll confirm fitment for your make and model.",
-  },
-  {
-    q: "Do you install the battery?",
-    a: "Every order includes free curbside installation in supported areas. Our tech tests your charging system, removes the old battery, and installs the new one in about 15 minutes.",
-  },
-  {
-    q: "What happens to my old battery?",
-    a: "We take it for recycling at no charge. Lead-acid batteries are over 95% recyclable, and we make sure yours doesn't end up in a landfill.",
-  },
-  {
-    q: "What does the warranty actually cover?",
-    a: "Free replacement for manufacturing defects or premature failure within the warranty period — no pro-rating, no receipts required if you registered at checkout.",
-  },
-  {
-    q: "Can I pay on delivery?",
-    a: "Yes, cash and card payments are both accepted at the time of delivery or installation.",
-  },
-];
+
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
   const {t} = useTranslation()
+
+  const faqs = [
+    {
+      q: t("FAQ_question1"),
+      a: t("FAQ_answer1"),
+    },
+    {
+      q: t("FAQ_question2"),
+      a: t("FAQ_answer2"),
+    },
+    {
+      q: t("FAQ_question3"),
+      a: t("FAQ_answer3"),
+    },
+    {
+      q: t("FAQ_question4"),
+      a: t("FAQ_answer4"),
+    },
+    {
+      q: t("FAQ_question5"),
+      a: t("FAQ_answer5"),
+    },
+  ];
 
   const toggle = (i) => {
     setOpenIndex((current) => (current === i ? null : i));

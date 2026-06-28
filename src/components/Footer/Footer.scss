@@ -52,4 +52,30 @@
       flex-shrink: 0;
     }
   }
+
+  &__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba($text, 0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $accent;
+    }
+
+    svg {
+      color: $accent;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+    }
+  } 
 }

@@ -32,9 +32,22 @@
 
   "FAQ_title": "Questions, answered",
   "FAQ_subtitle": "Everything you need to know before you order",
+  "FAQ_question1": "How many years of warranty do you offer?",
+  "FAQ_answer1": "All our batteries come with a minimum 1-year warranty, with premium brands offering up to 5 years. The exact warranty period is listed on each product page.",
+  "FAQ_question2": "Do you buy old batteries?",
+  "FAQ_answer2": "Yes! We pay cash for your old car battery regardless of brand or condition. Bring it in-store or hand it over during delivery and we'll pay you on the spot.",
+  "FAQ_question3": "Where is your store located?",
+  "FAQ_answer3": "We're located in Tbilisi, Georgia, Tsereteli Avenue N59. You can call us at +995 555 777 518 to get exact directions before visiting.",
+  "FAQ_question4": "Do you offer installation?",
+  "FAQ_answer4": "Yes, every purchase includes free professional installation. Our technician will test your charging system and swap the battery in about 10 minutes.",
+  "FAQ_question5": "What are your working hours?",
+  "FAQ_answer5": "We are open every day from 7:00 AM to 7:00 PM, including weekends and holidays.",
 
   "footer_all-rights-reserved": "All rights reserved",
   "footer_offers": "Free install · 5-year warranty",
+  "footer_address" : "Tbilisi, Tsereteli Avenue N59",
+  
+  
 
   "products_title-part1": "FIND YOUR",
   "products_title-part2": "BATTERY",

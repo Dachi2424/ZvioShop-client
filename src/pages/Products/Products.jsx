@@ -4,6 +4,7 @@ import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import {useTranslation} from "react-i18next"
 import "./Products.scss";
+import { useLocation } from "react-router-dom";
 
 const DEFAULT_FILTERS = {
   search: "",
@@ -17,22 +18,26 @@ const DEFAULT_FILTERS = {
 };
 
 export default function Products() {
-  const [filters, setFilters] = useState(DEFAULT_FILTERS);
+  
+  const location = useLocation()
+  const [filters, setFilters] = useState({
+    ...DEFAULT_FILTERS,
+    brand: location.state?.brand || ""
+  });
   const [page, setPage] = useState(1);
-
   const [data, setData] = useState({
     products: [],
     total: 0,
     totalPages: 1,
     page: 1,
   });
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   const {t} = useTranslation()
+  
 
 
+  
 
   useEffect(() => {
     fetchProducts();
@@ -49,10 +54,13 @@ export default function Products() {
   
 
   async function fetchProducts() {
+
+
+
+    //if there is no state from Brands section in home page
     try {
       setLoading(true);
       setError("");
-
       const params = {
         page,
         limit: 24,

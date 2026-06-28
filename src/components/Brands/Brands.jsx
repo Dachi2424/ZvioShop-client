@@ -1,10 +1,11 @@
 import { BatteryFull } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "./Brands.scss";
+import { useNavigate } from 'react-router-dom'
 
 const brands = [
-  "VoltCore",
-  "Duracrank",
+  "Blizzaro",
+  "Mutlu",
   "IronCell",
   "PowerPeak",
   "ArcMax",
@@ -16,6 +17,22 @@ const brands = [
 export default function Brands() {
 
   const {t} = useTranslation()
+  const navigate = useNavigate()
+
+  function handleSeeProducts(brand){
+    const page = document.querySelector(".page")
+    if (!page) {
+      navigate("/products")
+      return
+    }
+
+    page.classList.add("page--closing")
+    setTimeout(() => {
+      navigate("/products", {state: {brand}})
+    }, 300)
+  }
+
+
 
   return (
     <section id="brands" className="section brands">
@@ -25,7 +42,7 @@ export default function Brands() {
 
         <div className="brands__grid">
           {brands.map((brand) => (
-            <div className="brands__card" key={brand}>
+            <div onClick={() => handleSeeProducts(brand)} className="brands__card" key={brand}>
               <BatteryFull className="brands__icon" />
               <span className="brands__name">{brand}</span>
             </div>
