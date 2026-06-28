@@ -78,8 +78,9 @@ export default function Products() {
   return (
     <section className="products-page page">
       <header className="products-page__header">
-        <span className="products-page__eyebrow">
-          ● {t("hero_instock")}
+        <span className="app__badge">
+          <span className="app__badge__dot"></span>
+          {t("hero_instock")}
         </span>
 
         <h1 className="products-page__title">

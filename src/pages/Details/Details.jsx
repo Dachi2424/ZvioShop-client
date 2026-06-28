@@ -69,7 +69,10 @@ export default function Details() {
 
           {/* Info */}
           <div className="details__info">
-            <div className="details__stock">● {t("hero_instock")}</div>
+            <span className="app__badge app__badge--self-centered">
+              <span className="app__badge__dot"></span>
+              {t("hero_instock")}
+            </span>
             <div className="details__brand">{product.brand}</div>
             <h1 className="display details__title">{product.name}</h1>
 

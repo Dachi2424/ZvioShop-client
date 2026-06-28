@@ -11,10 +11,10 @@ export default function Hero() {
     <section className="hero">
       <div className="container hero__inner">
         <div className="hero__content">
-          <div className="hero__badge">
-            <span className="hero__badge__dot" />
+          <span className="app__badge">
+            <span className="app__badge__dot"></span>
             {t("hero_instock")}
-          </div>
+          </span>
 
           <h1 className="display hero__title">{t("hero_power-that")}<br /><span className="accent">{t("hero_starts")}</span> {t("hero_every-time")}</h1>
           <p className="hero__desc">{t("hero_description")}</p>
