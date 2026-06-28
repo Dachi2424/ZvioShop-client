@@ -8,7 +8,7 @@ const empty = {
   brand: "",
   price: "",
   amperage: "",
-  voltage: "",
+  voltage: "12.00",
   warranty: "",
   image: [],
 };
