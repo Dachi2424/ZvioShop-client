@@ -6,10 +6,13 @@ export default function AnimatedLink({to, children ,...props}) {
  
   const navigate = useNavigate()
 
-  function handleClick(e){
+  function handleClick(e) {
     e.preventDefault()
     document.querySelector(".page").classList.add("page--closing")
-    setTimeout(() => navigate(to), 500)
+    setTimeout(() => {
+      navigate(to)
+      document.querySelector(".page").classList.remove("page--closing")
+    }, 500)
   }
 
 
