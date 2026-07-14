@@ -3,8 +3,15 @@ import { useTranslation } from "react-i18next"
 import "./ProductFilter.scss";
 
 const BRANDS = [
-  "Blizzaro", "Mutlu", "IronCell", "PowerPeak",
-  "ArcMax", "TerraVolt", "Nordic Amp", "RedlinePower",
+  "Urban",
+  "Duracell",
+  "Takasaki",
+  "Eurojet",
+  "Deha",
+  "American",
+  "BMS",
+  "Pustun",
+  "Deeppower"
 ];
 
 const ProductFilter = ({ filters, onChange, onReset }) => {

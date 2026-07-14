@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { adminCreateProduct, adminUpdateProduct, adminListProducts } from "../../api/admin";
+import { adminCreateProduct, adminUpdateProduct, adminGetProduct } from "../../api/admin";
 import "./ProductForm.scss";
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet-async"
@@ -30,14 +30,10 @@ export default function ProductForm() {
     if (!isEdit) return;
     (async () => {
       try {
-        const data = await adminListProducts();
-        const list = Array.isArray(data) ? data : data.products || [];
-        const found = list.find((p) => String(p.id) === String(id));
-        if (found) {
-          setForm({ ...empty, ...found });
-          if (Array.isArray(found.image) && found.image.length) {
-            setImages(found.image);
-          }
+        const found = await adminGetProduct(id);
+        setForm({ ...empty, ...found });
+        if (Array.isArray(found.image) && found.image.length) {
+          setImages(found.image);
         }
       } catch (err) {
         setError(err.message);

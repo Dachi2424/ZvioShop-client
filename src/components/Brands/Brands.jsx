@@ -4,14 +4,15 @@ import "./Brands.scss";
 import { useNavigate } from 'react-router-dom'
 
 const brands = [
-  "Blizzaro",
-  "Mutlu",
-  "IronCell",
-  "PowerPeak",
-  "ArcMax",
-  "TerraVolt",
-  "Nordic Amp",
-  "RedlinePower",
+  "Urban",
+  "Duracell",
+  "Takasaki",
+  "Eurojet",
+  "Deha",
+  "American",
+  "BMS",
+  "Pustun",
+  "Deeppower"
 ];
 
 export default function Brands() {
