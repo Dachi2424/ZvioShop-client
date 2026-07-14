@@ -16,6 +16,8 @@ export default function Hero() {
             {t("hero_instock")}
           </span>
 
+          <p className="hero__tagline">{t("hero_tagline")}</p>
+
           <h1 className="display hero__title">{t("hero_power-that")}<br /><span className="accent">{t("hero_starts")}</span> {t("hero_every-time")}</h1>
           <p className="hero__desc">{t("hero_description")}</p>
           <div className="hero__actions">

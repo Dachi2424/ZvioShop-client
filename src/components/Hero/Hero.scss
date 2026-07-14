@@ -38,6 +38,15 @@
     }
   }
 
+  &__tagline {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $accent;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.75rem;
+  }
+
   &__title {
     font-size: 3rem;
     line-height: 1.05;

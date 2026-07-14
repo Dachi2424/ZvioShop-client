@@ -16,6 +16,7 @@
   "header_shop-now" : "SHOP NOW",
 
   "hero_instock": "IN STOCK — SHIPS TODAY",
+  "hero_tagline": "Batteries for every electric vehicle",
   "hero_title": "Power that starts every time.",
   "hero_description": "Fast service, free installation and 1 to 5 year warranty. We test your battery, buy your old one, and offer a wide selection for any make and model.",
   "hero_power-that": "POWER THAT",
@@ -34,6 +35,10 @@
 
   "brands_title": "BRANDS WE CARRY",
   "brands_subtitle": "Trusted manufacturers, Warranty 1 to 5 years",
+
+  "moreModels_title": "Even more in stock",
+  "moreModels_subtitle": "Not listed in the catalog, but available — call the shop to order",
+  "moreModels_cta": "Call the shop",
 
   "contacts_title": "TALK TO THE TEAM",
   "contacts_subtitle": "Call directly — no menus, no hold music",
