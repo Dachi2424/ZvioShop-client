@@ -124,7 +124,7 @@ export default function Details() {
 
               <div className="details__cta">
                 <a href="tel:+995555777518" className="btn btn--primary">{t("detail_call-the-shop")}</a>
-                <Link to="/products" className="btn btn--outline">{t("detail_browse-more")}</Link>
+                <AnimatedLink to={-1} className="btn btn--outline">{t("detail_browse-more")}</AnimatedLink>
               </div>
 
               <ul className="details__perks">
