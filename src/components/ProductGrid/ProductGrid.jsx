@@ -1,13 +1,17 @@
+import { useState } from "react";
 import "./ProductGrid.scss";
 import NoImage from "../../assets/no-image.webp"
 import {useTranslation} from "react-i18next"
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  
-  const img = Array.isArray(product.image) && product.image.length > 0
+
+  const initialImg = Array.isArray(product.image) && product.image.length > 0
     ? product.image[0]
-    : null;
+    : NoImage;
+
+  const [imgSrc, setImgSrc] = useState(initialImg);
+  const [loaded, setLoaded] = useState(false);
 
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -21,11 +25,15 @@ const ProductCard = ({ product }) => {
   return (
     <article className="product-card">
       <div onClick={() => handleNavigateToDetails(product.id)} className="product-card__media">
-        {img ? (
-          <img className="product-card__image" src={img} alt={product.name} />
-        ) : (
-          <img className="product-card__image" src={NoImage} alt="No battery image" />
-        )}
+        {!loaded && <div className="product-card__image-skeleton" />}
+        <img
+          className="product-card__image"
+          src={imgSrc}
+          alt={product.name}
+          style={{ opacity: loaded ? 1 : 0 }}
+          onLoad={() => setLoaded(true)}
+          onError={() => { setImgSrc(NoImage); setLoaded(true); }}
+        />
 
         {product.warranty !== null && product.warranty !== 0 && (
           <span className="badge">

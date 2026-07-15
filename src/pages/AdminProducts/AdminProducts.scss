@@ -111,14 +111,31 @@
     &:hover {
       border-color: rgba($accent, 0.4);
     }
+  }
+
+  &__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #fff;
+    overflow: hidden;
 
     img {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      height: 100%;
       object-fit: contain;
-      background: #fff;
       padding: 0.5rem;
+      position: relative;
+      transition: opacity 0.25s ease;
     }
+  }
+
+  &__image-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #15181f, #1c2029, #15181f);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
   }
 
   &__warranty{
@@ -219,5 +236,15 @@
       color: #9aa0a6;
       font-size: 14px;
     }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
   }
 }

@@ -4,7 +4,7 @@ import ProductFilter from "../../components/ProductFilter/ProductFilter";
 import ProductGrid from "../../components/ProductGrid/ProductGrid";
 import {useTranslation} from "react-i18next"
 import "./Products.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import {Helmet} from "react-helmet-async"
 
 const DEFAULT_FILTERS = {
@@ -21,11 +21,24 @@ const DEFAULT_FILTERS = {
 export default function Products() {
   
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [filters, setFilters] = useState({
     ...DEFAULT_FILTERS,
     brand: location.state?.brand || ""
   });
-  const [page, setPage] = useState(1);
+
+  const page = parseInt(searchParams.get("page")) || 1;
+
+  function setPage(updater) {
+    const newPage = typeof updater === "function" ? updater(page) : updater;
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("page", newPage);
+      return next;
+    });
+  }
+
   const [data, setData] = useState({
     products: [],
     total: 0,

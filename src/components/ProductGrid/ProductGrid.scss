@@ -104,6 +104,14 @@
       letter-spacing: 0.08em;
       z-index: 1;
     }
+
+    .product-card__image-skeleton {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #15181f, #1c2029, #15181f);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
   }
 
   &__image {
@@ -112,6 +120,8 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    position: relative;
+    transition: opacity 0.25s ease;
   }
   &__price{
     font-size: 20px;

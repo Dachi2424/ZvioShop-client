@@ -12,6 +12,8 @@ export default function Details() {
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [brokenImages, setBrokenImages] = useState({});
+  const [mainImgLoaded, setMainImgLoaded] = useState(false);
 
   const { t } = useTranslation()
 
@@ -32,15 +34,26 @@ export default function Details() {
     getDetails()
   }, [id]);
 
+  useEffect(() => {
+    setMainImgLoaded(false);
+  }, [activeImg]);
 
   if (loading) return <div className="app__loader-container"><div className="app__loader" /></div>;
   if (!product) return (
     <div className="details__no-product-container page">
       <p>{t("detail_no-product")}.</p>
-      <AnimatedLink to="/products" className="details__back details__back--no-product">← {t("detail_back-to-catalog")}</AnimatedLink>
+      <AnimatedLink to={-1} className="details__back details__back--no-product">← {t("detail_back-to-catalog")}</AnimatedLink>
     </div>)
 
   const images = Array.isArray(product.image) && product.image.length ? product.image : [NoImage];
+
+  function getSrc(i) {
+    return brokenImages[i] ? NoImage : images[i];
+  }
+
+  function markBroken(i) {
+    setBrokenImages((prev) => ({ ...prev, [i]: true }));
+  }
 
   return (
     <>
@@ -49,13 +62,20 @@ export default function Details() {
       </Helmet>
       <div className="details page">
         <div className="container">
-          <AnimatedLink to="/products" className="details__back">← {t("detail_back-to-catalog")}</AnimatedLink>
+          <AnimatedLink to={-1} className="details__back">← {t("detail_back-to-catalog")}</AnimatedLink>
 
           <div className="details__grid">
             {/* Gallery */}
             <div className="details__gallery">
               <div className="details__main-image">
-                <img src={images[activeImg]} alt={product.name} />
+                {!mainImgLoaded && <div className="details__image-skeleton" />}
+                <img
+                  src={getSrc(activeImg)}
+                  alt={product.name}
+                  style={{ opacity: mainImgLoaded ? 1 : 0 }}
+                  onLoad={() => setMainImgLoaded(true)}
+                  onError={() => { markBroken(activeImg); setMainImgLoaded(true); }}
+                />
               </div>
               {images.length > 1 && (
                 <div className="details__thumbs">
@@ -65,7 +85,11 @@ export default function Details() {
                       className={`details__thumb ${i === activeImg ? "is-active" : ""}`}
                       onClick={() => setActiveImg(i)}
                     >
-                      <img src={src} alt={`${product.name} ${i + 1}`} />
+                      <img
+                        src={getSrc(i)}
+                        alt={`${product.name} ${i + 1}`}
+                        onError={() => markBroken(i)}
+                      />
                     </button>
                   ))}
                 </div>

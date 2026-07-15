@@ -6,6 +6,50 @@ import NoImage from "../../assets/no-image.webp"
 import { useTranslation } from "react-i18next"
 import { Helmet } from "react-helmet-async"
 
+function AdminProductCard({ product, onDelete }) {
+  const initialImg = product.image?.[0] || NoImage;
+  const [imgSrc, setImgSrc] = useState(initialImg);
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <article className="admin-products__card">
+      <div className="admin-products__media">
+        {!loaded && <div className="admin-products__image-skeleton" />}
+        <img
+          src={imgSrc}
+          alt={product.name}
+          style={{ opacity: loaded ? 1 : 0 }}
+          onLoad={() => setLoaded(true)}
+          onError={() => { setImgSrc(NoImage); setLoaded(true); }}
+        />
+      </div>
+      {product.warranty > 0 && (
+        <div className="admin-products__warranty">
+          <span>გარანტია</span>
+          <span>{product.warranty} წელი</span>
+        </div>
+      )}
+      <div className="admin-products__body">
+        <h3>{product.name}</h3>
+        <p className="brand">{product.brand}</p>
+        <div className="admin-products__specs-div">
+          <span>{product.amperage}AH</span>
+          <span>{parseFloat(product.voltage)}V</span>
+        </div>
+        <p className="price">{product.price} ₾</p>
+        <div className="admin-products__card-actions">
+          <Link to={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/${product.id}/edit`} className="btn btn--ghost">
+            რედაქტირება
+          </Link>
+          <button onClick={() => onDelete(product.id)} className="btn btn--danger">
+            წაშლა
+          </button>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState("");
@@ -80,32 +124,7 @@ export default function AdminProducts() {
           {productsLoading && <div className="admin-products__loading-container"><div className="app__loader"></div></div>}
 
           {products.map((product) => (
-            <article key={product.id} className="admin-products__card">
-              <img src={product.image?.[0] || NoImage} alt={product.name}/>
-              {product.warranty > 0 && (
-              <div className="admin-products__warranty">
-                <span>გარანტია</span>
-                <span>{product.warranty} წელი</span>
-              </div>
-              )}
-              <div className="admin-products__body">
-                <h3>{product.name}</h3>
-                <p className="brand">{product.brand}</p>
-                <div className="admin-products__specs-div">
-                  <span>{product.amperage}AH</span>
-                  <span>{parseFloat(product.voltage)}V</span>
-                </div>
-                <p className="price">{product.price} ₾</p>
-                <div className="admin-products__card-actions">
-                  <Link to={`/${import.meta.env.VITE_ADMIN_ROUTE}/products/${product.id}/edit`} className="btn btn--ghost">
-                    რედაქტირება
-                  </Link>
-                  <button onClick={() => handleDelete(product.id)} className="btn btn--danger">
-                    წაშლა
-                  </button>
-                </div>
-              </div>
-            </article>
+            <AdminProductCard key={product.id} product={product} onDelete={handleDelete} />
           ))}
         </div>
 

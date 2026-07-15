@@ -6,21 +6,27 @@ export default function AnimatedLink({ to, children, ...props }) {
 
   function handleClick(e) {
     e.preventDefault()
-    if (location.pathname === to) return
+
+    const isBack = to === -1
+    if (!isBack && location.pathname === to) return
 
     const page = document.querySelector(".page")
     if (!page) {
-      navigate(to)
+      isBack ? navigate(-1) : navigate(to)
       return
     }
 
     page.classList.add("page--closing")
     setTimeout(() => {
-      navigate(to)
+      isBack ? navigate(-1) : navigate(to)
     }, 300)
   }
 
   return (
-    <a href={to} onClick={handleClick} {...props}>{children}</a>
+    <a href={isBackSafeHref(to)} onClick={handleClick} {...props}>{children}</a>
   )
+}
+
+function isBackSafeHref(to) {
+  return to === -1 ? "#" : to
 }
